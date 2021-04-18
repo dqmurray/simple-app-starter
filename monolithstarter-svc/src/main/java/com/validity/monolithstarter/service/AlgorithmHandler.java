@@ -6,22 +6,30 @@ import org.apache.commons.csv.*;
 import java.util.*;
 
 public class AlgorithmHandler {
-    public static boolean levenshteinDuplicate(CSVRecord record1, CSVRecord record2, int distanceMax){
+    public static double levenshteinDuplicate(CSVRecord record1, CSVRecord record2){
         Iterator<String> r1 = record1.iterator();
         Iterator<String> r2 = record2.iterator();
-        String e1;
-        String e2;
-        int distance = 0;
+        String e1 = r1.next();
+        String e2 = r2.next();
+        double bad = 0;
+        double total = 0;
+
+        if (e1.equals(e2))
+            System.out.println(e1);
+
         while (r1.hasNext() && r2.hasNext()){
             e1 = r1.next();
             e2 = r2.next();
             if (e1.equals(e2)){
-                distance = distance;
+                total += 1;
+            } else if (e1.equals("") || e2.equals("")){
+
             }
             else {
-                distance++;
+                bad += 1;
+                total += 1;
             }
         }
-        return distance <= distanceMax;
+        return bad/total * 100;
     }
 }
