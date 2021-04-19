@@ -32,4 +32,23 @@ public class AlgorithmHandler {
         }
         return bad/total * 100;
     }
+
+    //Creates the most of the JSON as a string
+    public static String csvRecordToJSON(CSVRecord csvRecord){
+        String response =
+        "{ \"id\":\"" + csvRecord.get(0)
+        + "\", \"first_name\":\"" + csvRecord.get(1)
+        + "\", \"last_name\":\"" + csvRecord.get(2)
+        + "\", \"company\":\"" + csvRecord.get(3)
+        + "\", \"email\":\"" + csvRecord.get(4)
+        + "\", \"address1\":\"" + csvRecord.get(5)
+        + "\", \"address2\":\"" + csvRecord.get(6)
+        + "\", \"zip\":\"" + csvRecord.get(7)
+        + "\", \"city\":\"" + csvRecord.get(8)
+        + "\", \"state_long\":\"" + csvRecord.get(9)
+        + "\", \"state\":\""+ csvRecord.get(10)
+        + "\", \"phone\":\""+ csvRecord.get(11)
+        + "\", \"duplicate\":\"";
+        return response;
+    }
 }

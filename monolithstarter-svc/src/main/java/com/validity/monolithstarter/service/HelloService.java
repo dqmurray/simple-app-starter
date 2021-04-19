@@ -15,7 +15,7 @@ public class HelloService {
     public String parseCSV() {
         CSVParser parser;
         String response = "";
-        int percentTolerance = 30;
+        int maxPercentSimilarForDupe = 30;
 
 		try {
             FileReader Data = new FileReader("../test-files/advanced.csv");
@@ -25,15 +25,15 @@ public class HelloService {
 
             for (CSVRecord csvRecord : parser) {
 
-                response += csvRecord.get(1);
+                response += AlgorithmHandler.csvRecordToJSON(csvRecord);
 
-                if (previous != null && percentTolerance >= AlgorithmHandler.levenshteinDuplicate(csvRecord, previous)){
-                    response += " [D], ";
+                if (previous != null && maxPercentSimilarForDupe >= AlgorithmHandler.levenshteinDuplicate(csvRecord, previous)){
+                    response += "true\" };" ;
                     duplicates.add(previous.get(1));
 
                 }
                 else {
-                    response += ", ";
+                    response += "false\" };";
                 }
                 previous = csvRecord;
 
